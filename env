@@ -1,0 +1,13 @@
+#! /bin/bash
+
+FIRST_NAME=""
+LAST_NAME=""
+DESCRIPTION=""
+TELEPHONE=""
+EMAIL=""
+WEBSITE=""
+STREET=""
+CITY=""
+STATE=""
+POSTCODE=""
+COUNTRY=""
