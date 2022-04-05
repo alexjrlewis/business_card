@@ -5,6 +5,8 @@ install:
 	source venv/bin/activate; \
 	pip3 install --upgrade pip; \
 	pip3 install -r requirements.txt; \
+	cp env .env; \
+	mkdir src/data; \
 
 run:
 	source venv/bin/activate; \
