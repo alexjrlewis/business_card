@@ -7,6 +7,9 @@ from typing import Dict, Tuple
 
 from dotenv import load_dotenv
 from PIL import Image, ImageFont, ImageDraw
+
+from qrcode.image.styledpil import StyledPilImage
+from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
 import qrcode
 
 load_dotenv()
@@ -113,12 +116,17 @@ def v_card_to_qr(v_card: str, params: Dict[str, str]) -> Image:
     Returns:
         The vCard as a QR code image.
     """
-    qr = qrcode.QRCode(version=1)
+    qr = qrcode.QRCode()
     qr.add_data(v_card)
-    qr.make(fit=True)
-    img = qr.make_image(
-        back_color=params["background-color"], fill_color=params["color-1"]
-    )
+    qr.make()
+    if params["theme"] == "light":
+        img = qr.make_image(
+            image_factory=StyledPilImage, module_drawer=RoundedModuleDrawer(), fit=True,
+        )
+    else:
+        img = qr.make_image(
+            back_color=params["background-color"], fill_color=params["color-1"]
+        )
     img.save("data/v-card.png")
     return img
 
